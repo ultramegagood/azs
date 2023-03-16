@@ -9,12 +9,12 @@ part of 'store.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic, no_leading_underscores_for_local_identifiers
 
 mixin _$ColumnFuelStore on _ColumnFuelStore, Store {
-  Computed<int>? _$getTotalPriceComputed;
+  Computed<double>? _$totalPriceComputed;
 
   @override
-  int get getTotalPrice =>
-      (_$getTotalPriceComputed ??= Computed<int>(() => super.getTotalPrice,
-              name: '_ColumnFuelStore.getTotalPrice'))
+  double get totalPrice =>
+      (_$totalPriceComputed ??= Computed<double>(() => super.totalPrice,
+              name: '_ColumnFuelStore.totalPrice'))
           .value;
 
   late final _$selectedcolumnFuelAtom =
@@ -49,12 +49,52 @@ mixin _$ColumnFuelStore on _ColumnFuelStore, Store {
     });
   }
 
+  late final _$literAtom =
+      Atom(name: '_ColumnFuelStore.liter', context: context);
+
+  @override
+  double get liter {
+    _$literAtom.reportRead();
+    return super.liter;
+  }
+
+  @override
+  set liter(double value) {
+    _$literAtom.reportWrite(value, super.liter, () {
+      super.liter = value;
+    });
+  }
+
+  late final _$priceAtom =
+      Atom(name: '_ColumnFuelStore.price', context: context);
+
+  @override
+  double get price {
+    _$priceAtom.reportRead();
+    return super.price;
+  }
+
+  @override
+  set price(double value) {
+    _$priceAtom.reportWrite(value, super.price, () {
+      super.price = value;
+    });
+  }
+
   late final _$initAsyncAction =
       AsyncAction('_ColumnFuelStore.init', context: context);
 
   @override
   Future<void> init() {
     return _$initAsyncAction.run(() => super.init());
+  }
+
+  late final _$payAsyncAction =
+      AsyncAction('_ColumnFuelStore.pay', context: context);
+
+  @override
+  Future<void> pay() {
+    return _$payAsyncAction.run(() => super.pay());
   }
 
   late final _$_ColumnFuelStoreActionController =
@@ -120,7 +160,9 @@ mixin _$ColumnFuelStore on _ColumnFuelStore, Store {
     return '''
 selectedcolumnFuel: ${selectedcolumnFuel},
 columnFuelList: ${columnFuelList},
-getTotalPrice: ${getTotalPrice}
+liter: ${liter},
+price: ${price},
+totalPrice: ${totalPrice}
     ''';
   }
 }

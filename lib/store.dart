@@ -1,5 +1,5 @@
-
 import 'dart:convert';
+import 'package:azs/routes.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:intl/intl.dart';
 import 'package:mobx/mobx.dart';
@@ -21,15 +21,24 @@ abstract class _ColumnFuelStore with Store {
   @observable
   List<ColumnModel> columnFuelList = [];
 
+  @observable
+  double liter = 0.0;
+
+  @observable
+  double price = 0.0;
+
   @computed
-  int get getTotalPrice => (selectedcolumnFuel!.liter! * selectedcolumnFuel!.price!);
+  double get totalPrice => liter * price;
+
   ///инициализация данных и настроек
   @action
   Future<void> init() async {
     final prefs = await SharedPreferences.getInstance();
+    logger.w(prefs.getString(kDefaultListKey));
     if (prefs.getString(kDefaultListKey) != null) {
       Iterable l = jsonDecode(prefs.getString(kDefaultListKey)!);
-      columnFuelList = List<ColumnModel>.from(l.map((model) => ColumnModel.fromJson(model)));
+      columnFuelList =
+          List<ColumnModel>.from(l.map((model) => ColumnModel.fromJson(model)));
     }
   }
 
@@ -43,9 +52,11 @@ abstract class _ColumnFuelStore with Store {
 
   @action
   void getFromQr(String value) {
+    logger.w(value);
     final temp = ColumnModel.fromJson(jsonDecode(value));
+    price = temp.price!.toDouble();
     selectedcolumnFuel = temp;
-    columnFuelList.add(selectedcolumnFuel!);
+    logger.w([selectedcolumnFuel?.fuelType]);
   }
 
   ///сеттеры задач
@@ -53,6 +64,7 @@ abstract class _ColumnFuelStore with Store {
   void setPrice(int value) {
     final temp = selectedcolumnFuel!;
     temp.price = value;
+    price = value.toInt().toDouble();
     selectedcolumnFuel = temp;
   }
 
@@ -67,7 +79,16 @@ abstract class _ColumnFuelStore with Store {
   @action
   void setLiter(int value) {
     final temp = selectedcolumnFuel!;
-    temp.totalPrice = value;
+    temp.liter = value;
+    liter = value.toDouble();
     selectedcolumnFuel = temp;
   }
+  @action
+  Future<void> pay() async{
+    columnFuelList.add(selectedcolumnFuel!);
+    logger.w([columnFuelList]);
+    final prefs = await SharedPreferences.getInstance();
+    prefs.setString(kDefaultListKey, jsonEncode(columnFuelList));
+  }
+
 }

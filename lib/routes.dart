@@ -2,6 +2,7 @@
 import 'package:azs/detailPage.dart';
 import 'package:azs/main.dart';
 import 'package:go_router/go_router.dart';
+import 'package:logger/logger.dart';
 
 GoRouter routes = GoRouter(
   initialLocation: '/',
@@ -19,4 +20,14 @@ GoRouter routes = GoRouter(
           ]),
     ]),
   ],
+);
+
+final logger = Logger(
+  printer: PrettyPrinter(
+    methodCount: 30,
+    errorMethodCount: 5,
+    colors: true,
+    printEmojis: true,
+    printTime: true,
+  ),
 );

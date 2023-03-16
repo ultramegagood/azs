@@ -1,5 +1,6 @@
 import 'dart:developer';
 import 'dart:io';
+import 'package:azs/service_locator.dart';
 import 'package:azs/store.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:azs/routes.dart';
@@ -9,6 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 
 void main() {
+  serviceLocatorSetup();
   runApp(const MyApp());
 }
 
@@ -43,9 +45,23 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class MyHome extends StatelessWidget {
+class MyHome extends StatefulWidget {
   MyHome({Key? key}) : super(key: key);
-  final todoStore = ColumnFuelStore();
+
+  @override
+  State<MyHome> createState() => _MyHomeState();
+}
+
+class _MyHomeState extends State<MyHome> {
+  final todoStore = serviceLocator<ColumnFuelStore>();
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    todoStore.init();
+
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -84,7 +100,7 @@ class _QRViewExampleState extends State<QRViewExample> {
   Barcode? result;
   QRViewController? controller;
   final GlobalKey qrKey = GlobalKey(debugLabel: 'QR');
-  final todoStore = ColumnFuelStore();
+  final todoStore = serviceLocator<ColumnFuelStore>();
 
   // In order to get hot reload to work we need to pause the camera if the platform
   // is android, or resume the camera if the platform is iOS.
@@ -149,7 +165,7 @@ class _QRViewExampleState extends State<QRViewExample> {
             scanData.code!.isNotEmpty &&
             scanData.code!.contains("{")) {
           todoStore.getFromQr(scanData.code!);
-          context.pop();
+          context.go("/qr/result");
         }
       });
     });

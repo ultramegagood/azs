@@ -85,10 +85,12 @@ abstract class _ColumnFuelStore with Store {
   }
   @action
   Future<void> pay() async{
+    final prefs = await SharedPreferences.getInstance();
+
     columnFuelList.add(selectedcolumnFuel!);
     logger.w([columnFuelList]);
-    final prefs = await SharedPreferences.getInstance();
     prefs.setString(kDefaultListKey, jsonEncode(columnFuelList));
+    logger.w(json);
   }
 
 }

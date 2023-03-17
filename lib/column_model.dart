@@ -14,5 +14,6 @@ class ColumnModel{
 
   ColumnModel({this.isColumn, this.column, this.fuelType, this.price,this.liter,this.totalPrice});
   factory ColumnModel.fromJson(Map<String,dynamic>json)=>_$ColumnModelFromJson(json);
+  Map<String, dynamic> toJson() => _$ColumnModelToJson(this);
 
 }

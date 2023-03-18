@@ -1,14 +1,38 @@
 ///создание путей для работы с АПП
+import 'package:azs/assets.dart';
 import 'package:azs/detailPage.dart';
+import 'package:azs/login_page.dart';
 import 'package:azs/main.dart';
+import 'package:azs/qr_page.dart';
+import 'package:azs/service_locator.dart';
+import 'package:azs/sign_up.dart';
+import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:logger/logger.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'auth_service.dart';
+import 'home_page.dart';
 
 GoRouter routes = GoRouter(
-  initialLocation: '/',
+  initialLocation: '/auth',
   debugLogDiagnostics: true,
   routes: [
-    GoRoute(path: '/', builder: (context, state) =>  MyHome(), routes: [
+    GoRoute(
+      path: "/auth",
+      builder: (context, state) => const LoginPage(),
+      redirect: (context, state){
+        if(FirebaseAuth.instance.currentUser != null){
+          return "/";
+        }
+      }
+    ),
+
+    GoRoute(
+      path: "/signup",
+      builder: (context, state) => const SignUp(),
+    ),
+    GoRoute(path: '/', builder: (context, state) => MyHome(), routes: [
       GoRoute(
           path: "qr",
           builder: (context, state) => const QRViewExample(),

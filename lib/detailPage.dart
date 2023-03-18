@@ -69,7 +69,7 @@ class _DetailPageState extends State<DetailPage> {
               RoundedTextField(
                 readOnly: true,
                 decoration: InputDecoration(labelText: 'Итого'),
-                value: todoStore.totalPrice?.toInt().toString(),
+                value: todoStore.totalPrice.toInt().toString(),
               ),
               // SizedBox(width: double.infinity,child: FloatingActionButton(onPressed: (){}, child: Container(width: double.infinity,),))
             ],

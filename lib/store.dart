@@ -86,7 +86,7 @@ abstract class _ColumnFuelStore with Store {
   @action
   Future<void> pay() async{
     final prefs = await SharedPreferences.getInstance();
-
+    selectedcolumnFuel?.totalPrice = totalPrice.toInt();
     columnFuelList.add(selectedcolumnFuel!);
     logger.w([columnFuelList]);
     prefs.setString(kDefaultListKey, jsonEncode(columnFuelList));

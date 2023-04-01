@@ -1,16 +1,14 @@
 # azs
 
-A new Flutter project.
+Дипломная работа.
 
-## Getting Started
+## Для проекта используем стейт менеджер MobX
 
-This project is a starting point for a Flutter application.
+Для каждой страницы чтобы слушать изменения с singleton класса используем на верстку виджет Observable 
+и со ссылкой serviceLocator изменяем/добавляем данные в класс.
 
-A few resources to get you started if this is your first Flutter project:
+А так-же используем маршрутизатор go_router для того чтобы организовать маршутизатор в приложений 
+навигацию делаем с помощью метода context.go("/path");
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- [документация flutter](https://docs.flutter.dev/get-started/codelab)
+- [Cookbook: гайды по flutter](https://docs.flutter.dev/cookbook)

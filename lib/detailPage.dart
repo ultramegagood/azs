@@ -1,3 +1,5 @@
+/// Страница показывает данные после скана QR
+
 import 'package:azs/rounded_textfield.dart';
 import 'package:azs/service_locator.dart';
 import 'package:azs/store.dart';
@@ -7,7 +9,9 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:mobx/mobx.dart';
 
 import 'fuel_store.dart';
-
+///
+/// Страница показывает данные после скана QR
+///
 class DetailPage extends StatefulWidget {
   const DetailPage({Key? key}) : super(key: key);
 

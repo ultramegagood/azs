@@ -1,8 +1,12 @@
+/// Моделька для бензоколонки
+
 import 'package:json_annotation/json_annotation.dart';
 
 part 'column_model.g.dart';
 
-
+///
+/// Моделька для бензоколонки
+///
 @JsonSerializable()
 class ColumnModel{
   bool? isColumn;

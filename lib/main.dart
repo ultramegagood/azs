@@ -1,3 +1,5 @@
+/// Метод которые запускаем при запуске приложения
+
 import 'dart:developer';
 import 'dart:io';
 import 'package:azs/service_locator.dart';
@@ -13,6 +15,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'firebase_options.dart';
 
+///
+/// Метод которые запускаем при запуске приложения
+///
 void main()async {
   serviceLocatorSetup();
   WidgetsFlutterBinding.ensureInitialized();

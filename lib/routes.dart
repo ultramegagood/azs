@@ -13,6 +13,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'auth_service.dart';
 import 'home_page.dart';
+///
+///роутер чтоб задать маршруты и подмаршруты используется пакет go_router
+///
 
 GoRouter routes = GoRouter(
   initialLocation: '/auth',
@@ -46,6 +49,9 @@ GoRouter routes = GoRouter(
   ],
 );
 
+///
+/// Логгер чтобы выводить касивые логи на консоль
+///
 final logger = Logger(
   printer: PrettyPrinter(
     methodCount: 30,

@@ -1,3 +1,5 @@
+///singleton класс для работы c колонками
+
 import 'dart:convert';
 import 'package:azs/routes.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -8,7 +10,9 @@ import 'assets.dart';
 import 'column_model.dart';
 part 'store.g.dart';
 
+///
 ///singleton класс для работы
+///
 class ColumnFuelStore = _ColumnFuelStore with _$ColumnFuelStore;
 
 abstract class _ColumnFuelStore with Store {
@@ -17,7 +21,9 @@ abstract class _ColumnFuelStore with Store {
   @observable
   ColumnModel? selectedcolumnFuel = ColumnModel();
 
-  ///Дефолтный массив для списка задач
+  ///
+  ///Дефолтный массив для списка покупок
+  ///
   @observable
   List<ColumnModel> columnFuelList = [];
 
@@ -29,8 +35,9 @@ abstract class _ColumnFuelStore with Store {
 
   @computed
   double get totalPrice => liter * price;
-
+  ///
   ///инициализация данных и настроек
+  ///
   @action
   Future<void> init() async {
     final prefs = await SharedPreferences.getInstance();
@@ -42,7 +49,6 @@ abstract class _ColumnFuelStore with Store {
     }
   }
 
-  ///сеттеры задач
   @action
   void setColumn(String value) {
     final temp = selectedcolumnFuel!;
@@ -50,6 +56,9 @@ abstract class _ColumnFuelStore with Store {
     selectedcolumnFuel = temp;
   }
 
+  ///
+  /// Парсит данные с QR и конвертирует его модель с помощью метода fromJson
+  ///
   @action
   void getFromQr(String value) {
     logger.w(value);
@@ -58,8 +67,6 @@ abstract class _ColumnFuelStore with Store {
     selectedcolumnFuel = temp;
     logger.w([selectedcolumnFuel?.fuelType]);
   }
-
-  ///сеттеры задач
   @action
   void setPrice(int value) {
     final temp = selectedcolumnFuel!;
@@ -68,7 +75,6 @@ abstract class _ColumnFuelStore with Store {
     selectedcolumnFuel = temp;
   }
 
-  ///сеттеры задач
   @action
   void setFuelType(String value) {
     final temp = selectedcolumnFuel!;
@@ -83,6 +89,9 @@ abstract class _ColumnFuelStore with Store {
     liter = value.toDouble();
     selectedcolumnFuel = temp;
   }
+  ///
+  /// стод оплаты который сохроняет обьект в кеш и в список
+  ///
   @action
   Future<void> pay() async{
     final prefs = await SharedPreferences.getInstance();

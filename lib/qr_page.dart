@@ -1,3 +1,4 @@
+/// Сраница скана QR
 
 import 'dart:io';
 import 'package:azs/service_locator.dart';
@@ -12,7 +13,9 @@ import 'package:qr_code_scanner/qr_code_scanner.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'firebase_options.dart';
-
+///
+/// Сраница скана QR
+///
 class QRViewExample extends StatefulWidget {
   const QRViewExample({Key? key}) : super(key: key);
 

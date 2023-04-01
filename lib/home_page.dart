@@ -1,3 +1,5 @@
+/// страница домашняя где отопражается список счетов оплаченных
+
 import 'dart:developer';
 import 'dart:io';
 import 'package:azs/service_locator.dart';
@@ -13,6 +15,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'firebase_options.dart';
 
+///
+/// страница домашняя где отопражается список счетов оплаченных
+///
 class MyHome extends StatefulWidget {
   MyHome({Key? key}) : super(key: key);
 
@@ -47,6 +52,10 @@ class _MyHomeState extends State<MyHome> {
             return ListView(
               shrinkWrap: true,
               children: [
+                ///
+                /// цикл для отоброженися списка используется метод map для конвертаций данных в виджет
+                ///
+                ///
                 ...todoStore.columnFuelList.map((e) => ListTile(
                   title: Text(e.fuelType.toString()),
                   trailing: Text("${e.totalPrice}тг"),

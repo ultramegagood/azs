@@ -1,8 +1,13 @@
+/// страница для логина
+
 import 'package:azs/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:go_router/go_router.dart';
-
+///
+/// страница для логина
+///
+///
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
 
@@ -16,7 +21,10 @@ class _LoginPageState extends State<LoginPage> {
   final _formKey = GlobalKey<FormState>();
   String _email = '';
   String _password = '';
-
+///
+  ///
+  /// метод для проверки и отправки запроса на авторизацию
+  ///
   void _submit() async {
     logger.w(_email);
     if (_formKey.currentState!.validate()) {

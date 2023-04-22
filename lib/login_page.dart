@@ -51,7 +51,8 @@ class _LoginPageState extends State<LoginPage> {
       body: Form(
         key: _formKey,
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             TextFormField(
               decoration: InputDecoration(labelText: 'Email'),
@@ -59,6 +60,7 @@ class _LoginPageState extends State<LoginPage> {
               value!.isEmpty ? 'Please enter an email' : null,
               onSaved: (value) => _email = value!,
             ),
+            SizedBox(height: 25,),
             TextFormField(
               decoration: InputDecoration(labelText: 'Password'),
               obscureText: true,
@@ -66,10 +68,14 @@ class _LoginPageState extends State<LoginPage> {
               value!.isEmpty ? 'Please enter a password' : null,
               onSaved: (value) => _password = value!,
             ),
+            SizedBox(height: 25,),
+
             ElevatedButton(
               onPressed: _submit,
               child: Text('Submit'),
             ),
+            SizedBox(height: 25,),
+
             ElevatedButton(
               onPressed: (){
                 context.go("/signup");
